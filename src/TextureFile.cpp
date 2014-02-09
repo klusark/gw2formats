@@ -197,6 +197,7 @@ bool TextureFile::assign(const byte* p_data, uint32 p_size)
         width   >>= 1;
         height  >>= 1;
     }
+	return true;
 }
 
 void TextureFile::clear()

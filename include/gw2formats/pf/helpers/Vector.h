@@ -75,7 +75,7 @@ public:
     const T& operator[](uint32 p_index) const
     {
         if (p_index >= TDimensions) { throw std::out_of_range("The given index is too large."); }
-        return p_index;
+        return m_data[p_index];
     }
 
     uint32 size() const
