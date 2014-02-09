@@ -217,13 +217,13 @@ uint16 TextureFile::width() const
 uint16 TextureFile::height() const
 {
     if (m_data.size() == 0) { return 0; } 
-    m_data[0]->height();
+    return m_data[0]->height();
 }
 
 uint32 TextureFile::format() const
 {
     if (m_data.size() == 0) { return 0; } 
-    m_data[0]->format();
+    return m_data[0]->format();
 }
 
 uint32 TextureFile::mipMapCount() const
