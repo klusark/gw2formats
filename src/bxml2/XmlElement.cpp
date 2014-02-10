@@ -100,7 +100,7 @@ void XmlElement::insertChild(XmlElement* p_element, XmlElement* p_insertBefore)
         }
     }
 
-    throw std::exception("This should never, ever happen. If it does, it means an XML element has its parent set to an object that does not contain it.");
+    throw std::string("This should never, ever happen. If it does, it means an XML element has its parent set to an object that does not contain it.");
 }
 
 void XmlElement::removeChild(XmlElement* p_element)
@@ -123,7 +123,7 @@ void XmlElement::removeChild(XmlElement* p_element)
         }
     }
 
-    throw std::exception("This should never, ever happen. If it does, it means an XML element has its parent set to an object that does not contain it.");
+    throw std::string("This should never, ever happen. If it does, it means an XML element has its parent set to an object that does not contain it.");
 }
 
 void XmlElement::clear()
@@ -182,7 +182,7 @@ void XmlElement::removeAttribute(XmlAttribute* p_attribute)
             return;
         }
     }
-    throw std::exception("This should never, ever happen. If it does, it means an XML attribute has its parent set to an object that does not contain it.");
+    throw std::string("This should never, ever happen. If it does, it means an XML attribute has its parent set to an object that does not contain it.");
 }
 
 void XmlElement::setAttribute(const std::string& p_name, const std::string& p_value)
@@ -296,14 +296,14 @@ void XmlElement::setName(const std::string& p_name)
 {
     m_name = p_name;
     // awesome trim
-    m_name.erase(std::remove_if(std::begin(m_name), std::end(m_name), std::isspace), std::end(m_name));
+    m_name.erase(std::remove_if(std::begin(m_name), std::end(m_name), ::isspace), std::end(m_name));
     if (!m_name.length()) { throw std::invalid_argument("XmlElement needs a non-whitespace name."); }
 }
 
 void XmlElement::setValue(const std::string& p_value)
 {
     m_value = p_value;
-    m_value.erase(std::remove_if(std::begin(m_value), std::end(m_value), std::isspace), std::end(m_value));
+    m_value.erase(std::remove_if(std::begin(m_value), std::end(m_value), ::isspace), std::end(m_value));
 }
 
 }; // namespace bxml2

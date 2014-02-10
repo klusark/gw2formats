@@ -114,7 +114,7 @@ uint32 MipMapData::uncompressedSize() const
     case fcc::_3DCX:
         return numBlocks * 16;
     default:
-        throw std::exception("Unsupported format.");
+        throw std::string("Unsupported format.");
     }
 }
 

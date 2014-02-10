@@ -104,7 +104,7 @@ std::basic_string<char16> StringsFileEntry::get() const
     if (!isEncrypted()) {
         retval.assign(reinterpret_cast<const char16*>(m_data.data() + 6), (m_data.size() - 6) >> 1);
     } else {
-        throw std::exception("String is encrypted.");
+        throw std::string("String is encrypted.");
     }
 
     return retval;

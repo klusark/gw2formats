@@ -3,6 +3,7 @@
 #include <gw2formats/bxml2/Bxml2Reader.h>
 
 #include <fstream>
+#include <algorithm>
 
 #include <gw2formats/fcc.h>
 #include <gw2formats/bxml2/XmlDocument.h>
@@ -122,7 +123,9 @@ void Bxml2Reader::populateXmlDocument(XmlDocument& p_document) const
             element->setValue(readString(pos, strings));
         }
 
-        element->setAttribute("__numChildren", ::_itoa(numChildren, buffer, 10));
+        sprintf(buffer, "%d", buffer);
+
+        element->setAttribute("__numChildren", buffer);
 
         for (uint32 i = 0; i < numAttributes; i++) {
             auto key   = readString(pos, strings);

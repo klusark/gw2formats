@@ -77,7 +77,8 @@ void XmlAttribute::setName(const std::string& p_name)
 {
     m_name = p_name;
     // awesome trim
-    m_name.erase(std::remove_if(std::begin(m_name), std::end(m_name), std::isspace), std::end(m_name));
+    auto it = std::remove_if(std::begin(m_name), std::end(m_name), ::isspace);
+    m_name.erase(it, std::end(m_name));
     if (!m_name.length()) { throw std::invalid_argument("XmlElement needs a non-whitespace name."); }
 }
 

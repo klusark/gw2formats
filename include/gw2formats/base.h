@@ -61,37 +61,7 @@ typedef uint64_t        uint64;     /**< Unsigned 64-bit integer. */
 
 typedef float           float32;    /**< 32-bit float. */
 typedef double          float64;    /**< 64-bit float. */
-
-// Unicode chars (NOTE: UNTESTED FOR ANYTHING BUT MSVC)
-#ifdef _MSC_VER
-   typedef wchar_t      char16;     /**< UTF-16 character. */
-   typedef uint32       char32;     /**< UTF-32 character. */
-#  define GW2F_U16(x)   L##x
-#elif defined(__has_feature) && __has_feature(cxx_unicode_literals)
-   typedef char16_t     char16;     /**< UTF-16 character. */
-   typedef char32_t     char32;     /**< UTF-32 character. */
-#  define GW2F_U16(x)   u##x
-#  define GW2F_U32(x)   U##x
-#elif defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5))
-   typedef char16_t     char16;     /**< UTF-16 character. */
-   typedef char32_t     char32;     /**< UTF-32 character. */
-#  define GW2F_U16(x)   u##x
-#  define GW2F_U32(x)   U##x
-#else
-#  if defined(WCHAR_MAX) && (WCHAR_MAX == 0xffff)
-     typedef wchar_t    char16;     /**< UTF-16 character. */
-#    define GW2F_U16(x) L##x
-#  else
-     typedef uint16     char16;     /**< UTF-16 character. */
-#  endif
-#  if defined(WCHAR_MAX) && (WCHAR_MAX == 0xffffffff)
-     typedef wchar_t    char32;     /**< UTF-32 character. */
-#    define GW2F_U32(x) L##x
-#  else
-     typedef uint32     char32;     /**< UTF-32 character. */
-#  endif
-#endif 
-
+typedef wchar_t         char16;     /**< UTF-16 character. */
 }; // namespace gw2f
 
 #endif // GW2FORMATS_BASE_H_INCLUDED
