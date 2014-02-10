@@ -226,13 +226,27 @@ public:
     const byte* assign(const byte* p_data, uint32 p_size);
 };
 
+GW2FORMATS_API struct SpeciesResourceDataV36
+{
+    byte16 speciesId;
+    qword name;
+    qword modelId;
+    qword modelVariant;
+public:
+    SpeciesResourceDataV36();
+    SpeciesResourceDataV36(const byte* p_data, uint32 p_size, const byte** po_pointer = nullptr);
+    SpeciesResourceDataV36(const SpeciesResourceDataV36& p_other);
+    SpeciesResourceDataV36& operator=(const SpeciesResourceDataV36& p_other);
+    const byte* assign(const byte* p_data, uint32 p_size);
+};
+
 GW2FORMATS_API struct ResourceDataV33
 {
-    dword crc;
     helpers::Array<AmbientLightDataV33> ambientLightResources;
     helpers::Array<FileNameRefDataV33> fileNameRefs;
     helpers::Array<ScriptDataV33> scripts;
     helpers::Array<TextResourceDataV33> textResources;
+    helpers::Array<SpeciesResourceDataV36> speciesResource;
 public:
     ResourceDataV33();
     ResourceDataV33(const byte* p_data, uint32 p_size, const byte** po_pointer = nullptr);

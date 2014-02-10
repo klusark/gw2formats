@@ -594,11 +594,50 @@ const byte* TextResourceDataV33::assign(const byte* p_data, uint32 p_size)
 }
 
 //============================================================================/
+//      SpeciesResourceDataV36
+//============================================================================/
+
+SpeciesResourceDataV36::SpeciesResourceDataV36()
+{
+}
+
+SpeciesResourceDataV36::SpeciesResourceDataV36(const byte* p_data, uint32 p_size, const byte** po_pointer)
+{
+    auto pointer = assign(p_data, p_size);
+    if (po_pointer) { *po_pointer = pointer; }
+}
+
+SpeciesResourceDataV36::SpeciesResourceDataV36(const SpeciesResourceDataV36& p_other)
+    : speciesId(p_other.speciesId)
+    , name(p_other.name)
+    , modelId(p_other.modelId)
+    , modelVariant(p_other.modelVariant)
+{
+}
+
+SpeciesResourceDataV36& SpeciesResourceDataV36::operator=(const SpeciesResourceDataV36& p_other)
+{
+    speciesId = p_other.speciesId;
+    name          = p_other.name;
+    modelId               = p_other.modelId;
+    modelVariant         = p_other.modelVariant;
+    return *this;
+}
+
+const byte* SpeciesResourceDataV36::assign(const byte* p_data, uint32 p_size)
+{
+    p_data = helpers::read(p_data, p_size, speciesId);
+    p_data = helpers::read(p_data, p_size, name);
+    p_data = helpers::read(p_data, p_size, modelId);
+    p_data = helpers::read(p_data, p_size, modelVariant);
+    return p_data;
+}
+
+//============================================================================/
 //      ResourceDataV33
 //============================================================================/
 
 ResourceDataV33::ResourceDataV33()
-    : crc(0)
 {
 }
 
@@ -609,31 +648,31 @@ ResourceDataV33::ResourceDataV33(const byte* p_data, uint32 p_size, const byte**
 }
 
 ResourceDataV33::ResourceDataV33(const ResourceDataV33& p_other)
-    : crc(p_other.crc)
-    , ambientLightResources(p_other.ambientLightResources)
+    : ambientLightResources(p_other.ambientLightResources)
     , fileNameRefs(p_other.fileNameRefs)
     , scripts(p_other.scripts)
     , textResources(p_other.textResources)
+	, speciesResource(p_other.speciesResource)
 {
 }
 
 ResourceDataV33& ResourceDataV33::operator=(const ResourceDataV33& p_other)
 {
-    crc                  = p_other.crc;
     ambientLightResources = p_other.ambientLightResources;
     fileNameRefs          = p_other.fileNameRefs;
     scripts               = p_other.scripts;
     textResources         = p_other.textResources;
+	speciesResource       = p_other.speciesResource;
     return *this;
 }
 
 const byte* ResourceDataV33::assign(const byte* p_data, uint32 p_size)
 {
-    p_data = helpers::read(p_data, p_size, crc);
     p_data = helpers::read(p_data, p_size, ambientLightResources);
     p_data = helpers::read(p_data, p_size, fileNameRefs);
     p_data = helpers::read(p_data, p_size, scripts);
     p_data = helpers::read(p_data, p_size, textResources);
+	p_data = helpers::read(p_data, p_size, speciesResource);
     return p_data;
 }
 
