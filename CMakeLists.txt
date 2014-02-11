@@ -7,8 +7,8 @@ include_directories(include)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAG}")
 
-add_library(gw2formats SHARED
 
+set(SOURCES
 src/StringsFile.cpp
 src/TextureFile.cpp
 
@@ -66,9 +66,9 @@ src/pf/chunks/prlt/ContentPortalManifest.cpp
 src/pf/chunks/txtV/TextPackVariants.cpp
 src/pf/chunks/txtm/TextPackManifest.cpp
 src/pf/chunks/txtv_/TextPackVoices.cpp
+)
 
-
-
+set(HEADERS
 include/gw2formats/Language.h
 include/gw2formats/StringsFile.h
 include/gw2formats/TextureFile.h
@@ -163,4 +163,8 @@ include/gw2formats/pf/chunks/txtV/TextPackVariants.h
 include/gw2formats/pf/chunks/txtm/TextPackManifest.h
 include/gw2formats/pf/chunks/txtv_/TextPackVoices.h
 )
-#target_link_libraries
+
+add_library(gw2formats SHARED ${SOURCES} ${HEADERS})
+
+install(TARGETS gw2formats DESTINATION "lib")
+install(DIRECTORY include DESTINATION "include")
