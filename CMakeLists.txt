@@ -167,4 +167,4 @@ include/gw2formats/pf/chunks/txtv_/TextPackVoices.h
 add_library(gw2formats SHARED ${SOURCES} ${HEADERS})
 
 install(TARGETS gw2formats DESTINATION "lib")
-install(DIRECTORY include DESTINATION "include")
+install(DIRECTORY include/gw2formats DESTINATION "include")
