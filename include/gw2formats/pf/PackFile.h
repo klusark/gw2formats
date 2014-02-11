@@ -27,6 +27,8 @@
 #include <fstream>
 #include <memory>
 #include <vector>
+#include <cstring>
+#include <cstddef>
 
 #include <gw2formats/base.h>
 #include <gw2formats/pf/ChunkFactory.h>
